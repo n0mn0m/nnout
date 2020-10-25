@@ -1,0 +1,15 @@
+[package]
+name = "rockd-service"
+version = "1.0.0"
+authors = ["n0mn0m"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-rt = "1.1"
+actix-web = "3.0"
+bytes = "0.5.2"
+env_logger = "0.7.1"
+json = "0.12"
+rocksdb = "0.15.0"
