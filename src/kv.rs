@@ -1,4 +1,4 @@
-use rocksdb::DB;
+use sled::Db;
 use std::sync::Arc;
 
 pub trait KVStore {
@@ -9,25 +9,25 @@ pub trait KVStore {
 }
 
 #[derive(Clone)]
-pub struct RocksDB {
-    db: Arc<DB>,
+pub struct SledDb {
+    db: Arc<Db>,
 }
 
-impl KVStore for RocksDB {
+impl KVStore for SledDb {
     fn init(file_path: &str) -> Self {
-        RocksDB {
-            db: Arc::new(DB::open_default(file_path).unwrap()),
+        SledDb {
+            db: Arc::new(sled::open(file_path).unwrap()),
         }
     }
 
     fn save(&self, k: &str, v: &str) -> bool {
-        self.db.put(k.as_bytes(), v.as_bytes()).is_ok()
+        self.db.insert(k.as_bytes(), v.as_bytes()).is_ok()
     }
 
     fn find(&self, k: &str) -> Option<String> {
-        match self.db.get(k.as_bytes()) {
+        match self.db.get(k) {
             Ok(Some(v)) => {
-                let result = String::from_utf8(v).unwrap();
+                let result = String::from_utf8(v.to_vec()).unwrap();
                 println!("Finding '{}' returns '{}'", k, result);
                 Some(result)
             }
@@ -43,6 +43,6 @@ impl KVStore for RocksDB {
     }
 
     fn delete(&self, k: &str) -> bool {
-        self.db.delete(k.as_bytes()).is_ok()
+        self.db.remove(k.as_bytes()).is_ok()
     }
 }

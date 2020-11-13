@@ -1,5 +1,5 @@
 [package]
-name = "rockd-service"
+name = "nnout"
 version = "1.0.0"
 authors = ["n0mn0m"]
 edition = "2018"
@@ -12,4 +12,4 @@ actix-web = "3.0"
 bytes = "0.5.2"
 env_logger = "0.7.1"
 json = "0.12"
-rocksdb = "0.15.0"
+sled = "0.34.5"

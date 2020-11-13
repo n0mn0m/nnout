@@ -8,4 +8,4 @@ services:
     ports:
     - '11012:8080'
     volumes:
-    - ./rocksdb:/tmp/rocks/on-air
+    - ./sled:/tmp/sled/on-air

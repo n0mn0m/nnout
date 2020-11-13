@@ -8,7 +8,7 @@ mod kv_handler;
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
-    let db: kv::RocksDB = kv::KVStore::init("/tmp/rocks");
+    let db: kv::SledDb = kv::KVStore::init("/tmp/sled");
 
     std::env::set_var("RUST_LOG", "actix_web=info,actix_server=info");
     env_logger::init();

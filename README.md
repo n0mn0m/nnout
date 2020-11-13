@@ -1,6 +1,7 @@
 # Overview
 
-Simple RocksDB API service layer. Put a key in at an endpoint and retrieve it.
+Simple [SledDB](http://sled.rs/introduction.html) API service layer.
+Put a k/v in at an endpoint and retrieve it.
 
 ## Example
 
